@@ -1,0 +1,120 @@
+<div style="height:40px;line-height:40px;">
+  <button type="button" class="btn btn-primary new-task-btn" (click)="showNewTask=true; showNewTaskToEdit=false" 
+    [disabled]="showNewTask || showNewTaskToEdit">
+    New task
+  </button>
+  <div class="checkboxDiv">
+    <label>
+      <input (change)="onCheckboxChange()" type="checkbox" checked> Show completed tasks
+    </label>
+  </div>
+</div>
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td width="38%">Summary</td>
+      <td width="22%">Status</td>
+      <td width="22%">
+        Due Date
+        <select (change)="onDueDateChange($event.target.value)" style="float:right;width:20px;">
+          <option selected>unsorted</option>
+          <option>ascending</option>
+          <option>descending</option>
+        </select>
+      </td>
+      <td width="18%">Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td width="45%">
+        <div *ngIf="task.status == status[2]">
+          <s>{{task.summary}}</s>
+        </div>
+        <div *ngIf="task.status != status[2]">
+          {{task.summary}}
+        </div>
+      </td>
+      <td width="22%" class="tdSelect">
+        <select *ngIf="taskToEdit == undefined" (change)="onSelect(task.id, $event.target.value)" style="width:100%">
+          <option *ngFor="let s of status" [selected]="s == task.status">{{s}}</option>
+        </select>
+        <div *ngIf="taskToEdit != undefined">
+          <select *ngIf="taskToEdit[0].id != task.id" (change)="onSelect(task.id, $event.target.value)" style="width:100%">
+            <option *ngFor="let s of status" [selected]="s == task.status">{{s}}</option>
+          </select>
+          <div class="editing" *ngIf="taskToEdit[0].id == task.id">
+            <span>...editing...</span>
+          </div>
+        </div>
+      </td>
+      <td width="22%">{{task.date}}</td>
+      <td width="11%">
+        <div *ngIf="taskToEdit == undefined"> <!-- when edit is NOT clicked -->
+            <div class="actions" *ngIf="task.status !== status[2]">
+              <span matTooltip="edit" matTooltipShowDelay="200">
+                <i class="material-icons edit" (click)="editTask(task.id)">edit</i>
+              </span>
+              <span matTooltip="complete" matTooltipShowDelay="200">
+                  <i class="material-icons check" (click)="changeStatus(task.id, 'Completed')">check</i>
+              </span>
+              <span matTooltip="delete" matTooltipShowDelay="200">
+                  <i class="material-icons delete" (click)="deleteTask(task.id)">delete</i>
+              </span>
+            </div>
+  
+            <div class="actions" *ngIf="task.status === status[2]">
+              <span matTooltip="" matTooltipShowDelay="200">
+                <i class="material-icons edit1" style="color:rgb(219, 218, 218)">edit</i>
+              </span>
+              <span matTooltip="completed" matTooltipShowDelay="200">
+                <i class="material-icons" style="background-color:rgb(90, 199, 90);color:rgb(219, 218, 218)">check</i>
+              </span>
+              <span matTooltip="delete" matTooltipShowDelay="200">
+                <i class="material-icons delete" (click)="deleteTask(task.id)">delete</i>
+              </span>
+            </div>
+        </div>
+        <div *ngIf="taskToEdit != undefined"> <!-- when edit IS clicked -->
+            <div class="actions" *ngIf="task.status !== status[2] && taskToEdit[0].id != task.id">
+              <span matTooltip="edit" matTooltipShowDelay="200">
+                <i class="material-icons edit" (click)="editTask(task.id)">edit</i>
+              </span>
+              <span matTooltip="complete" matTooltipShowDelay="200">
+                  <i class="material-icons check" (click)="changeStatus(task.id, 'Completed')">check</i>
+              </span>
+              <span matTooltip="delete" matTooltipShowDelay="200">
+                  <i class="material-icons delete" (click)="deleteTask(task.id)">delete</i>
+              </span>
+            </div>
+  
+            <div class="actions" *ngIf="task.status === status[2] && taskToEdit[0].id != task.id">
+              <span matTooltip="" matTooltipShowDelay="200">
+                <i class="material-icons edit1" style="color:rgb(219, 218, 218)">edit</i>
+              </span>
+              <span matTooltip="completed" matTooltipShowDelay="200">
+                <i class="material-icons" style="background-color:rgb(90, 199, 90);color:rgb(219, 218, 218)">check</i>
+              </span>
+              <span matTooltip="delete" matTooltipShowDelay="200">
+                <i class="material-icons delete" (click)="deleteTask(task.id)">delete</i>
+              </span>
+            </div>
+
+            <div class="editing" *ngIf="taskToEdit[0].id == task.id">
+              <span>...editing...</span>
+            </div>
+        </div>
+          
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="margin-bottom:30px;">
+  <app-task [showNewTask]="showNewTask" (emiter1)="emitHandler($event)"
+  (emiter2)="handleNewTask($event)" (emiter3)="setToNull($event)" [taskToEdit]="taskToEdit"
+  [showNewTaskToEdit]="showNewTaskToEdit"></app-task>
+</div>

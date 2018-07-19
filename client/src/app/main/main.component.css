@@ -1,0 +1,51 @@
+.new-task-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+table>thead>tr>td {
+    background-color: rgb(238, 234, 234);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions>span>.edit:hover {
+    cursor: pointer;
+    color: yellow;
+}
+
+.actions>span>.check:hover {
+    cursor: pointer;
+    color: lightgreen;
+}
+
+.actions>span>.delete:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.editing {
+    display: flex;
+}
+
+.editing>span {
+    margin: auto;
+}
+
+.checkboxDiv {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    float: right;
+}
+
+.checkboxDiv>label:hover {
+    cursor: pointer;
+}
+
+.checkboxDiv>label>input:hover {
+    cursor: pointer;
+} 

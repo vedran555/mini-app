@@ -1,0 +1,61 @@
+<div class="new-task-wrapper" *ngIf="showNewTask || showNewTaskToEdit">
+    <form #taskForm="ngForm" (ngSubmit)="onSave()">
+        <div class="times">
+            <span class="times-sign" matTooltip="close" matTooltipShowDelay="200">
+                <span (click)="closeNewTask()">&times;</span>
+              </span>
+        </div>
+        <div class="inside-wrapper">
+            <div class="row-wrapper">
+                <div class="text">Summary:</div>
+                <div class="input">
+                    <input type="text" name="summary" [(ngModel)]="summary" #summary1="ngModel" 
+                    autocomplete="off" required>
+                </div>
+            </div>
+            <div class="error-wrapper">
+                <div style="width:30%"></div>
+                <div style="width:70%">
+                    <span class="error" style="float:left" *ngIf="summary1?.errors?.required && summary1.dirty">
+                        *Summary is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="inside-wrapper">
+            <div class="row-wrapper">
+                <div class="text">Due Date:</div>
+                <div class="input">
+                    <input type="text" name="date" [(ngModel)]="date" #date1="ngModel" placeholder="yyyy-mm-dd"
+                    autocomplete="off" required validateDate> 
+                    
+                </div>
+            </div>
+            <div class="error-wrapper">
+                <div style="width:30%"></div>
+                <div class="date-errors">
+                    <span class="error" style="float:left" *ngIf="date1?.errors?.required && date1.dirty">
+                        *Date is required
+                    </span>
+                    <span class="error" style="float:left" *ngIf="date1?.errors?.validateDate && date1.dirty &&
+                    !date1?.errors?.required">
+                        *Date has to be valid
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="inside-wrapper">
+            <div class="row-wrapper">
+                <div class="text">Description:</div>
+                <div class="textarea">
+                    <textarea rows="5" id="textarea" name="description" [(ngModel)]="description" #description1="ngModel">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn btn-success task-btn" [disabled]="!taskForm.valid">Save</button>
+            <button type="button" class="btn btn-danger task-btn" (click)="closeNewTask()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,93 @@
+.new-task-wrapper {
+    display: flex;
+    border: 1px solid black;
+    padding: 10px;
+    width: 45%;
+    flex-direction: column;
+}
+
+.times {
+    font-size: 18px;
+    flex: 1;
+    height: 25px;
+    align-items: center;  
+}
+
+.times-sign {
+    float: right;
+}
+
+.times-sign:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.inside-wrapper {
+    margin-right: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.row-wrapper {
+    display: flex;
+}
+
+.text {
+    width: 30%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.input {
+    width: 70%;
+    display: flex;
+    height: 35px;
+    align-items: center;
+}
+
+.input>input {
+    flex: 1;
+    max-height: 25px;
+}
+
+.input>.error {
+    flex: 1;
+}
+
+.textarea {
+    width: 70%;
+    display: flex;
+}
+
+#textarea {
+    flex: 1;
+}
+
+.btn-danger {
+    float: right;
+}
+
+.buttons {
+    margin-right: 20px;
+}
+
+.task-btn {
+    width: 80px;
+}
+
+.error-wrapper {
+    display: flex;
+}
+
+.error{
+    color: red;
+    font-size: 10px;
+}
+
+.date-errors {
+    display:flex;
+    flex-direction: column;
+    width:70%;
+}

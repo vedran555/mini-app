@@ -1,0 +1,17 @@
+Zadatak uradjen u sledecim tehonologijama:
+
+-Angular 2+ je koriscen za frontend,
+-Node.js i Express za backend,
+-MySQL baza podataka.
+
+
+
+Kratko uputstvo za pokretanje:
+
+-u command prompt-u navigirati u folder gde se nalazi projekat: >cd ime_foldera
+-zatim uneti >nodemon ,za pokretanje servera
+-zatim kreirati bazu podataka i tabelu otvaranjem http://localhost:3000/createdb i http://localhost:3000/createtaskstable 
+(ili uraditi taj deo rucno)
+-zatim otvoriti novi command prompt i navigirati u folder u kome se nalazi projekat, pa u 'client' folder:
+>cd ime_foldera/client
+-nakon toga uneti >ng serve i otvoriti http://localhost:4200
